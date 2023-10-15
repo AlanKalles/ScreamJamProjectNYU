@@ -5,46 +5,60 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    public Transform img1, img2, obj1, obj2;
     [SerializeField] GridLayoutGroup gridLayoutGroup;
+    [SerializeField] Transform viewPanel;
 
     public static InventoryManager instance;
-    private List<Transform> inventory,inventoryObjects;
+    private List<InventoryPair> inventories;
     private RectTransform gridLayoutRectTransform;
-    private Transform selectedInventory,selectedInventoryObject;
+    private InventoryPair selectedInventory;
     private void Awake()
     {
         instance = this;
     }
     private void Start()
     {
-        inventory = new List<Transform>(5);
-        inventoryObjects = new List<Transform>(5);
+        inventories=new List<InventoryPair>();
         gridLayoutRectTransform=gridLayoutGroup.GetComponent<RectTransform>();
+        viewPanel.gameObject.SetActive(false);
+
+        AddInventory(img1, obj1,true);
+        AddInventory(img2, obj2,false);
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
             CheckSelect();
-        if(Input.GetKeyDown(KeyCode.Delete))
-            RemoveSelectedObject();
     }
     Vector3 mouseWorldPos;
     private void FixedUpdate()
     {
-        if(selectedInventoryObject != null)
+        if (selectedInventory != null)
         {
-            mouseWorldPos=Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorldPos.z = 0;
-            selectedInventoryObject.position= mouseWorldPos;
+            if (!selectedInventory.isViewable)
+            {
+                mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseWorldPos.z = 0;
+                selectedInventory.obj.position = mouseWorldPos;
+            }
+            else
+            {
+                float axis = Input.GetAxisRaw("Mouse ScrollWheel");
+                if (axis != 0)
+                {
+                    axis = Mathf.Sign(axis) * 0.8f;
+                    selectedInventory.obj.localScale += new Vector3(axis, axis, 0);
+                }
+            }
         }
     }
-    public void AddInventory(Transform ui, Transform obj)
+    public void AddInventory(Transform ui, Transform obj, bool isViewable)
     {
-        if (inventory.Count < 5)
+        if (inventories.Count < 5)
         {
-            inventory.Add(ui);
-            inventoryObjects.Add(obj);
-            Transform parent = gridLayoutGroup.transform.GetChild(inventory.Count - 1);
+            inventories.Add(new InventoryPair(ui, obj, isViewable));
+            Transform parent = gridLayoutGroup.transform.GetChild(inventories.Count - 1);
             ui.SetParent(parent);
             ui.position = parent.position;
             obj.gameObject.SetActive(false);
@@ -71,33 +85,48 @@ public class InventoryManager : MonoBehaviour
     }
     public void SelectInventory(int index)
     {
-        if (inventory.Count <= index) return;
-        selectedInventory = inventory[index];
-        selectedInventory.gameObject.SetActive(false);
-        selectedInventoryObject = inventoryObjects[index];
-        selectedInventoryObject.gameObject.SetActive(true);
+        if (inventories.Count <= index) return;
+        selectedInventory = inventories[index];
+        selectedInventory.ui.gameObject.SetActive(false);
+        selectedInventory.obj.gameObject.SetActive(true);
+        if (selectedInventory.isViewable)
+        {
+            viewPanel.gameObject.SetActive(true);
+            selectedInventory.obj.position = viewPanel.position;
+        }
     }
     public void DeselectInventory()
     {
-        selectedInventory.position = selectedInventory.parent.position;
-        selectedInventory.gameObject.SetActive(true);
+        selectedInventory.ui.position = selectedInventory.ui.parent.position;
+        selectedInventory.ui.gameObject.SetActive(true);
+        selectedInventory.obj.gameObject.SetActive(false);
+        if (selectedInventory.isViewable)
+            viewPanel.gameObject.SetActive(false);
         selectedInventory = null;
-        selectedInventoryObject.gameObject.SetActive(false);
-        selectedInventoryObject = null;
     }
     public void RemoveSelectedObject()
     {
-        inventory.Remove(selectedInventory);
-        inventoryObjects.Remove(selectedInventoryObject);
+        inventories.Remove(selectedInventory);
         Transform parent;
-        for(int i=0;i < inventory.Count; i++)
+        for(int i=0;i < inventories.Count; i++)
         {
             parent = gridLayoutGroup.transform.GetChild(i);
-            inventory[i].SetParent(parent);
-            inventory[i].position = parent.position;
+            inventories[i].ui.SetParent(parent);
+            inventories[i].ui.position = parent.position;
         }
-        selectedInventory.gameObject.SetActive(false);
+        selectedInventory.ui.gameObject.SetActive(false);
         selectedInventory = null;
-        selectedInventoryObject = null;
+    }
+    class InventoryPair
+    {
+        public Transform ui, obj;
+        public bool isViewable;
+        public InventoryPair(Transform _ui, Transform _obj, bool isViewable)
+        {
+            ui = _ui;
+            obj = _obj;
+            this.isViewable = isViewable;
+        }
+
     }
 }
