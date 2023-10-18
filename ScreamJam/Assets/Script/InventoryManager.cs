@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public Transform img1, img2, obj1, obj2;
     [SerializeField] GridLayoutGroup gridLayoutGroup;
     [SerializeField] Transform viewPanel;
 
@@ -22,9 +21,6 @@ public class InventoryManager : MonoBehaviour
         inventories=new List<InventoryPair>();
         gridLayoutRectTransform=gridLayoutGroup.GetComponent<RectTransform>();
         viewPanel.gameObject.SetActive(false);
-
-        AddInventory(img1, obj1,true);
-        AddInventory(img2, obj2,false);
     }
     private void Update()
     {
