@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public GameObject player;
+    [Header("Player Attributes")]
     public float walkSpeed = 10f;
     public float runSpeed = 20f;
+    [Space (10)]
+    [Header("Player Components")]
     public Rigidbody2D rb;
+    public GameObject player;
 
     [SerializeField] private bool movable = true;
     [SerializeField] private State state = State.walk;
 
-    enum State
+
+    enum State //Íæ¼Ò×´Ì¬
     {
         walk,
         run,
         interact
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         StateMachine();
