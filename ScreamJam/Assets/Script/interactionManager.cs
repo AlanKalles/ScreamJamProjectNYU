@@ -23,7 +23,7 @@ public class interactionManager : MonoBehaviour
             disPlayInteraction(potentialInteractions[0]);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                potentialInteractions[0].triggerDialogue();
+                potentialInteractions[0].Action();
             }
         }
     }

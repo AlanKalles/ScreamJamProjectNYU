@@ -3,30 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//并未测试
-public abstract class Interactable
-{
-    public Dialogue selfDialogue;
-    private Transform selfPos;
 
-    public Interactable(Dialogue inputD, Transform pos)
+
+
+//并未测试
+public class DialogueInteraction
+{
+    public Dialogue selfDialogue = null;
+
+    public DialogueInteraction(Dialogue inputD)
     {
         selfDialogue = inputD;
-        selfPos = pos;
     }
 
     public void triggerDialogue()
     {
-        dialogueManager.dManager.StartDialogue(selfDialogue);
+        if (selfDialogue != null)
+        {
+            dialogueManager.dManager.StartDialogue(selfDialogue);
+        }
     }
 
-    public Vector2 returnPos() { return (Vector2)selfPos.position; }
 }
 
-interface IDialogueTrigger
+public abstract class Interactable : MonoBehaviour
 {
-    Interactable iController { get; set; }
-    //在实现时可以加入锁钥
-    void connectToManager() { interactionManager.iManager.connectInteraction(iController); }
-    void disconnectFromManager() { interactionManager.iManager.disconnect(iController); }
+    public GameObject player;
+    private Transform selfPos;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            interactionManager.iManager.connectInteraction(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            interactionManager.iManager.disconnect(this);
+        }
+    }
+
+    public Vector2 returnPos() { return selfPos.position; }
+
+    public abstract void Action();
+}
+
+
+public abstract class Talkable : Interactable
+{
+    DialogueInteraction iController { get; set; }
+
+    public override void Action()
+    {
+        iController.triggerDialogue();
+    }
 }
