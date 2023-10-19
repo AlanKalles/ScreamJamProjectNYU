@@ -29,7 +29,7 @@ public class DialogueInteraction
 public abstract class Interactable : MonoBehaviour
 {
     public GameObject player;
-    private Transform selfPos;
+    public Transform selfPos { get; set; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -55,10 +55,11 @@ public abstract class Interactable : MonoBehaviour
 
 public abstract class Talkable : Interactable
 {
-    DialogueInteraction iController { get; set; }
+    public DialogueInteraction iController { get; set; }
 
     public override void Action()
     {
+        interactionManager.iManager.inInteraction = true;
         iController.triggerDialogue();
     }
 }

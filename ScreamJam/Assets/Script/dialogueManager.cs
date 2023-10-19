@@ -39,6 +39,7 @@ public class dialogueManager : MonoBehaviour
     {
 
         //for test
+        /*
         spriteModifier sMod1 = new spriteModifier(1,
                                                 (GameObject gm) => { gm.SetActive(true); },
                                                 (GameObject gm) => { gm.SetActive(true); });
@@ -49,6 +50,7 @@ public class dialogueManager : MonoBehaviour
                                                  (GameObject gm) => { SetImageOpacity(gm.GetComponent<Image>(), 1f); });
         d.SetModQue(new Queue<spriteModifier>(new[] { sMod1, sMod2, sMod3}));
         StartDialogue(d);
+        */
     }
 
     // Update is called once per frame
@@ -65,7 +67,6 @@ public class dialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue _d)
     {
-
         //没有加角色禁用的部分，同理没有加解锁部分
         curDialogue = _d;
         curIndex = 0;
@@ -112,6 +113,7 @@ public class dialogueManager : MonoBehaviour
         rightImage.SetActive(false);
         curDialogue = null;
         dialogueText.enabled = false;
+        interactionManager.iManager.inInteraction = false;
     }
 
     IEnumerator TypeSentence(string sentence, Dialogue d, int index)

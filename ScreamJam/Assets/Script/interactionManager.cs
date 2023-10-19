@@ -7,6 +7,7 @@ public class interactionManager : MonoBehaviour
 
     //并未测试
     public static interactionManager iManager;
+    public bool inInteraction = false;
     public GameObject player;
     private List<Interactable> potentialInteractions = new List<Interactable>();
 
@@ -21,7 +22,7 @@ public class interactionManager : MonoBehaviour
         if (potentialInteractions.Count != 0)
         {
             disPlayInteraction(potentialInteractions[0]);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && ! inInteraction)
             {
                 potentialInteractions[0].Action();
             }
