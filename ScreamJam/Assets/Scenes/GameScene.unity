@@ -794,7 +794,7 @@ MonoBehaviour:
   hoverPosOffset: {x: 0, y: 0, z: 0}
   x_left: 0
   x_right: 0
-  speed: 1
+  speed: 2
 --- !u!4 &1007061990
 Transform:
   m_ObjectHideFlags: 0
