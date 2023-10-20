@@ -9,10 +9,9 @@ public abstract class Clickable : MonoBehaviour
 
     private static Vector2 mouseWorldPos;
     Vector3 originalPos, hoverPos;
-
+    internal bool clickable = true;
     internal virtual void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
         Gizmos.DrawWireCube((topRight + botLeft) / 2, topRight - botLeft);
     }
     internal virtual void Start()
@@ -23,6 +22,7 @@ public abstract class Clickable : MonoBehaviour
     }
     internal virtual void FixedUpdate()
     {
+        if (!clickable) return;
         if (mouseWorldPos == Vector2.zero)
         {
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,7 +39,8 @@ public abstract class Clickable : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (!clickable) return;
+        if (Input.GetMouseButtonDown(0))
         {
             if (mouseWorldPos == Vector2.zero)
                 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,3 +54,4 @@ public abstract class Clickable : MonoBehaviour
     }
     internal abstract void OnClick();
 }
+

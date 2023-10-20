@@ -7,10 +7,11 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] GridLayoutGroup gridLayoutGroup;
     [SerializeField] Transform viewPanel;
+    [SerializeField] GameObject backgroundImgPrefab, imagePrefab;
 
     public static InventoryManager instance;
     private List<InventoryPair> inventories;
-    private RectTransform gridLayoutRectTransform;
+    private RectTransform gridLayoutRectTransform, viewPortTransform;
     private InventoryPair selectedInventory;
     private void Awake()
     {
@@ -18,14 +19,16 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        inventories=new List<InventoryPair>();
-        gridLayoutRectTransform=gridLayoutGroup.GetComponent<RectTransform>();
+        inventories = new List<InventoryPair>();
+        gridLayoutRectTransform = gridLayoutGroup.GetComponent<RectTransform>();
+        viewPortTransform = gridLayoutGroup.transform.parent.GetComponent<RectTransform>();
         viewPanel.gameObject.SetActive(false);
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            CheckSelect();
+            if (!CheckSelect() && selectedInventory != null && !selectedInventory.isViewable)
+                CheckReceiver();
     }
     Vector3 mouseWorldPos;
     private void FixedUpdate()
@@ -49,27 +52,49 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-    public void AddInventory(Transform ui, Transform obj, bool isViewable)
+    //public void AddInventory(Transform ui, Transform obj, bool isViewable)
+    //{
+    //    if (inventories.Count < 5)
+    //    {
+    //        inventories.Add(new InventoryPair(ui, obj, isViewable));
+    //        Transform parent = gridLayoutGroup.transform.GetChild(inventories.Count - 1);
+    //        ui.SetParent(parent);
+    //        ui.position = parent.position;
+    //        obj.gameObject.SetActive(false);
+    //    }
+    //}
+    public void AddInventory(Sprite sprite, Transform obj, bool isViewable)
     {
-        if (inventories.Count < 5)
+        if (inventories.Count > 4)
         {
-            inventories.Add(new InventoryPair(ui, obj, isViewable));
-            Transform parent = gridLayoutGroup.transform.GetChild(inventories.Count - 1);
-            ui.SetParent(parent);
-            ui.position = parent.position;
-            obj.gameObject.SetActive(false);
+            GameObject bg = Instantiate(backgroundImgPrefab, gridLayoutGroup.transform);
+            gridLayoutRectTransform.sizeDelta += new Vector2(gridLayoutGroup.spacing.x + gridLayoutGroup.cellSize.x, 0);
         }
+
+        GameObject go = Instantiate(imagePrefab, gridLayoutGroup.transform.GetChild(inventories.Count));
+        go.GetComponent<Image>().sprite = sprite;
+        go.GetComponent<RectTransform>().sizeDelta = gridLayoutGroup.cellSize * 0.8f;
+        inventories.Add(new InventoryPair(go.transform, obj, isViewable));
+        go.transform.position = go.transform.parent.position;
+        obj.gameObject.SetActive(false);
+        obj.SetParent(null);
+
     }
     //check if mouse selects one of the inventory. If selects, call SelectInventory()
-    private void CheckSelect()
+    private bool CheckSelect()
     {
         Vector2 mousePos = Input.mousePosition;
-        Vector2 topLeft = gridLayoutGroup.transform.position;
-        topLeft -= gridLayoutRectTransform.sizeDelta / 2;
-        Vector2 gridIndex = mousePos - topLeft;
+        Vector2 topLeft = viewPortTransform.position;
+        topLeft -= viewPortTransform.sizeDelta / 2;
+        Vector2 gridIndex;
+        if (mousePos.x < topLeft.x || mousePos.y > topLeft.y)
+            return false;
+        topLeft = (Vector2)gridLayoutGroup.transform.position;
+        gridIndex = mousePos - topLeft;
+        if (gridIndex.y > gridLayoutRectTransform.sizeDelta.y) return false;
+        gridIndex.x -= gridLayoutGroup.padding.left;
         int index = (int)(gridIndex.x / (gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x));
-        if (gridIndex.y > gridLayoutGroup.cellSize.y)
-            return;
+        //Debug.Log($"position: {gridLayoutGroup.transform.position}, size delta/2: {gridLayoutRectTransform.sizeDelta / 2}, topleft: {topLeft}");
         if (selectedInventory == null)
         {
             SelectInventory(index);
@@ -77,6 +102,22 @@ public class InventoryManager : MonoBehaviour
         else
         {
             DeselectInventory();
+        }
+        return true;
+    }
+    private void CheckReceiver()
+    {
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        for (int i = 0; i < PieceReceiver.receivers.Count; i++)
+        {
+            if (PieceReceiver.receivers[i].CheckBounds(mouseWorldPos))
+            {
+                if (PieceReceiver.receivers[i].CheckGameObject(selectedInventory.obj.gameObject))
+                {
+                    PieceReceiver.receivers[i].Action(selectedInventory.obj.gameObject);
+                    RemoveSelectedObject();
+                }
+            }
         }
     }
     public void SelectInventory(int index)
@@ -104,7 +145,7 @@ public class InventoryManager : MonoBehaviour
     {
         inventories.Remove(selectedInventory);
         Transform parent;
-        for(int i=0;i < inventories.Count; i++)
+        for (int i = 0; i < inventories.Count; i++)
         {
             parent = gridLayoutGroup.transform.GetChild(i);
             inventories[i].ui.SetParent(parent);
@@ -126,3 +167,4 @@ public class InventoryManager : MonoBehaviour
 
     }
 }
+

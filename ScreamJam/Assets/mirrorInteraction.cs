@@ -9,8 +9,11 @@ public class mirrorInteraction : Interactable
     private float recordSize;
     private float focusCameraSize = 3;
 
+    private Clickable mirrorClick;
+
     private void Start()
     {
+        mirrorClick = this.gameObject.GetComponent<Clickable>();
         selfPos = this.transform;
         quitable = true;
     }
@@ -21,6 +24,7 @@ public class mirrorInteraction : Interactable
         cameraScript.curCameraObj.transform.position = focusPos;
         recordSize = cameraScript.curCamera.orthographicSize;
         cameraScript.curCamera.orthographicSize = focusCameraSize;
+        mirrorClick.clickable = true;
     }
 
     public override void quit()
