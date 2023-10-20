@@ -13,10 +13,10 @@ public class PlayerControl : MonoBehaviour
     public GameObject player;
 
     [SerializeField] private bool movable = true;
-    [SerializeField] private State state = State.walk;
+    [SerializeField] private PlayerState state = PlayerState.walk;
 
 
-    enum State //���״̬
+    public enum PlayerState //���״̬
     {
         walk,
         run,
@@ -33,32 +33,50 @@ public class PlayerControl : MonoBehaviour
     {
         StateMachine();
         
-        if (movable)
-        {
-            Move();
-        }
-        
     }
 
-    private void Move()
+    private void Move(float speed)
     {
         float moveX = Input.GetAxisRaw("Horizontal");
 
-        Vector2 move = new Vector2(moveX * walkSpeed, rb.velocity.y);
+        Vector2 move = new Vector2(moveX * speed, rb.velocity.y);
         rb.velocity = move;
 
     }
 
     private void StateMachine()
     {
-        if (state == State.walk)
+        if (state == PlayerState.walk)
         {
             movable = true;
+            Move(walkSpeed);
         }
 
-        if(state == State.interact)
+        if(state == PlayerState.interact)
         {
             movable = false;
+        }
+
+        if(state == PlayerState.run)
+        {
+            movable = true;
+            Move(runSpeed);
+        }
+    }
+
+    public void toggleState(string str)
+    {
+        if(str == "walk")
+        {
+            state = PlayerState.walk;
+        }
+        if(str == "run")
+        {
+            state = PlayerState.run;
+        }
+        if(str == "interact")
+        {
+            state = PlayerState.interact;
         }
     }
 
