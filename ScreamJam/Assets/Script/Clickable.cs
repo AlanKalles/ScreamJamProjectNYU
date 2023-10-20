@@ -37,7 +37,7 @@ public abstract class Clickable : MonoBehaviour
         }
         mouseWorldPos = Vector2.zero;
     }
-    private void Update()
+    internal virtual void Update()
     {
         if (!clickable) return;
         if (Input.GetMouseButtonDown(0))

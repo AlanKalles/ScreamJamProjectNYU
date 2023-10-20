@@ -8,6 +8,7 @@ public class mirrorInteraction : Interactable
     private Vector3 recordPos;
     private float recordSize;
     private float focusCameraSize = 3;
+    private Rigidbody2D _rb;
 
     private Clickable mirrorClick;
 
@@ -16,6 +17,7 @@ public class mirrorInteraction : Interactable
         mirrorClick = this.gameObject.GetComponent<Clickable>();
         selfPos = this.transform;
         quitable = true;
+        _rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     public override void Action()
@@ -31,5 +33,7 @@ public class mirrorInteraction : Interactable
     {
         cameraScript.curCameraObj.transform.position = recordPos;
         cameraScript.curCamera.orthographicSize = recordSize;
+        mirrorClick.clickable = false;
+        _rb.velocity = Vector2.zero;
     }
 }

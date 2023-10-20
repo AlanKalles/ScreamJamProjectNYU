@@ -16,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private State state = State.walk;
 
 
-    enum State //Íæ¼Ò×´Ì¬
+    enum State //ï¿½ï¿½ï¿½×´Ì¬
     {
         walk,
         run,
@@ -61,5 +61,6 @@ public class PlayerControl : MonoBehaviour
             movable = false;
         }
     }
+
 
 }

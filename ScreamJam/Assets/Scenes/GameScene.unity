@@ -784,7 +784,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007061987}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 603044756adfb413baa2ff0dc5b2636b, type: 3}
   m_Name: 
@@ -792,6 +792,9 @@ MonoBehaviour:
   topRight: {x: 4, y: 2}
   botLeft: {x: 1, y: -2}
   hoverPosOffset: {x: 0, y: 0, z: 0}
+  x_left: 0
+  x_right: 0
+  speed: 1
 --- !u!4 &1007061990
 Transform:
   m_ObjectHideFlags: 0
