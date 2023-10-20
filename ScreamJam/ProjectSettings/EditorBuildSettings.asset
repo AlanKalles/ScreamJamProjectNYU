@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/RealScenes/D1ChildDayTime.unity
     guid: 53376e2c540bccf4b815c46d9615e1bf
   - enabled: 1
+    path: Assets/Scenes/RealScenes/D1Kitchen.unity
+    guid: 150aede87ee28894cb319ce5d84456bc
+  - enabled: 1
     path: Assets/Scenes/RealScenes/D1ChildNightTime 1.unity
     guid: aae7e61ad9af7be4c94920a016420381
   - enabled: 1

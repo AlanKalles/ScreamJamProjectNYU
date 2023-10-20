@@ -28,13 +28,12 @@ public class DialogueInteraction
 
 public abstract class Interactable : MonoBehaviour
 {
-    public GameObject player;
     public Transform selfPos { get; set; }
     public bool quitable = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject.CompareTag("Player"))
         {
             interactionManager.iManager.connectInteraction(this);
         }
@@ -42,7 +41,7 @@ public abstract class Interactable : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject.CompareTag("Player"))
         {
             interactionManager.iManager.disconnect(this);
         }
@@ -62,7 +61,6 @@ public abstract class Talkable : Interactable
 
     public override void Action()
     {
-        
         iController.triggerDialogue();
     }
 }
