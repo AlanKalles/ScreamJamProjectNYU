@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 52555206}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -824,7 +824,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccb284b4a2d04bdcafc006827e056b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 52555201}
   quitable: 0
   focusPos: {x: 2.5, y: 0, z: -5}
 --- !u!61 &1007061992
@@ -1211,7 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d48a67ab166439e86f40bbcbaaeade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 52555201}
   quitable: 0
   d:
     text:
