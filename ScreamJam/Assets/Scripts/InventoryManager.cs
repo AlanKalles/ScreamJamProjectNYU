@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] GridLayoutGroup gridLayoutGroup;
-    [SerializeField] Transform viewPanel;
+    [SerializeField] Transform viewPanel,inventoryObjParent;
     [SerializeField] GameObject backgroundImgPrefab, imagePrefab;
 
     public static InventoryManager instance;
@@ -23,6 +23,7 @@ public class InventoryManager : MonoBehaviour
         gridLayoutRectTransform=gridLayoutGroup.GetComponent<RectTransform>();
         viewPortTransform = gridLayoutGroup.transform.parent.GetComponent<RectTransform>();
         viewPanel.gameObject.SetActive(false);
+        DontDestroyOnLoad(transform.parent.gameObject);
     }
     private void Update()
     {
@@ -77,7 +78,7 @@ public class InventoryManager : MonoBehaviour
         inventories.Add(new InventoryPair(go.transform, obj, isViewable));
         go.transform.position = go.transform.parent.position;
         obj.gameObject.SetActive(false);
-        obj.SetParent(null);
+        obj.SetParent(inventoryObjParent);
         
     }
     //check if mouse selects one of the inventory. If selects, call SelectInventory()
@@ -107,6 +108,7 @@ public class InventoryManager : MonoBehaviour
     }
     private void CheckReceiver()
     {
+        if (PieceReceiver.receivers == null) return;
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         for (int i = 0; i < PieceReceiver.receivers.Count; i++)
         {

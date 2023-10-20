@@ -12,7 +12,8 @@ public class CollectableObject : Clickable
     }
     public enum ObjectType
     {
+        Others,
         Mirror,
-        Amulete
+        RuneD1InParentRoom,
     }
 }

@@ -9,6 +9,7 @@ public class interactionManager : MonoBehaviour
     public static interactionManager iManager;
     public bool inInteraction = false;
     public GameObject player;
+    public Transform eToInteractUI;
     private List<Interactable> potentialInteractions = new List<Interactable>();
 
     private void Awake()
@@ -43,25 +44,9 @@ public class interactionManager : MonoBehaviour
                     potentialInteractions[0].Action();
                 }
             }
-            //if (Input.GetKeyDown(KeyCode.E) && ! inInteraction)
-            //{
-            //    potentialInteractions[0].Action();
-            //    inInteraction = true;
-            //}
-            //if (inInteraction)
-            //{
-                
-            //    if (potentialInteractions[0].quitable)
-            //    {
-                    
-            //        if (Input.GetMouseButtonDown(1))
-            //        {
-            //            potentialInteractions[0].quit();
-            //            inInteraction = false;
-            //        }
-            //    }
-            //}
         }
+        else if(eToInteractUI.gameObject.activeSelf)
+            eToInteractUI.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -95,6 +80,10 @@ public class interactionManager : MonoBehaviour
 
     private void disPlayInteraction(Interactable i)
     {
-
+        if (!eToInteractUI.gameObject.activeSelf)
+        {
+            eToInteractUI.gameObject.SetActive(true);
+            eToInteractUI.position = i.transform.position;
+        }
     }
 }

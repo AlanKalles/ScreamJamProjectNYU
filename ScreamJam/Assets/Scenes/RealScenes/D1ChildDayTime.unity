@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 1980354136}
   - component: {fileID: 1980354135}
   m_Layer: 0
-  m_Name: DoorToKitchen
+  m_Name: DoorToDiningRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
