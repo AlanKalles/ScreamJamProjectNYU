@@ -216,6 +216,13 @@ public class spriteModifier
         rightModification = _rm;
     }
 
+    public spriteModifier(int _p, bool _lm, bool _rm)
+    {
+        pointer = _p;
+        leftModification = (GameObject gm) => { gm.SetActive(_lm); };
+        rightModification = (GameObject gm) => { gm.SetActive(_rm); };
+    }
+
 
     //参考中功能为变亮变暗，所以现在为瞬间modify
     public void modifySpr()
