@@ -15,12 +15,20 @@ public class InventoryManager : MonoBehaviour
     private InventoryPair selectedInventory;
     private void Awake()
     {
+        if (instance != null)
+            Destroy(this);
+        DontDestroyOnLoad(transform.parent.gameObject);
         instance = this;
     }
     private void Start()
     {
+<<<<<<< Updated upstream:ScreamJam/Assets/Script/InventoryManager.cs
         inventories = new List<InventoryPair>();
         gridLayoutRectTransform = gridLayoutGroup.GetComponent<RectTransform>();
+=======
+        inventories=new List<InventoryPair>();
+        gridLayoutRectTransform=gridLayoutGroup.GetComponent<RectTransform>();
+>>>>>>> Stashed changes:ScreamJam/Assets/Scripts/InventoryManager.cs
         viewPortTransform = gridLayoutGroup.transform.parent.GetComponent<RectTransform>();
         viewPanel.gameObject.SetActive(false);
     }
@@ -65,12 +73,20 @@ public class InventoryManager : MonoBehaviour
     //}
     public void AddInventory(Sprite sprite, Transform obj, bool isViewable)
     {
+<<<<<<< Updated upstream:ScreamJam/Assets/Script/InventoryManager.cs
         if (inventories.Count > 4)
+=======
+        if(inventories.Count > 4)
+>>>>>>> Stashed changes:ScreamJam/Assets/Scripts/InventoryManager.cs
         {
             GameObject bg = Instantiate(backgroundImgPrefab, gridLayoutGroup.transform);
             gridLayoutRectTransform.sizeDelta += new Vector2(gridLayoutGroup.spacing.x + gridLayoutGroup.cellSize.x, 0);
         }
+<<<<<<< Updated upstream:ScreamJam/Assets/Script/InventoryManager.cs
 
+=======
+        
+>>>>>>> Stashed changes:ScreamJam/Assets/Scripts/InventoryManager.cs
         GameObject go = Instantiate(imagePrefab, gridLayoutGroup.transform.GetChild(inventories.Count));
         go.GetComponent<Image>().sprite = sprite;
         go.GetComponent<RectTransform>().sizeDelta = gridLayoutGroup.cellSize * 0.8f;
@@ -78,7 +94,11 @@ public class InventoryManager : MonoBehaviour
         go.transform.position = go.transform.parent.position;
         obj.gameObject.SetActive(false);
         obj.SetParent(null);
+<<<<<<< Updated upstream:ScreamJam/Assets/Script/InventoryManager.cs
 
+=======
+        
+>>>>>>> Stashed changes:ScreamJam/Assets/Scripts/InventoryManager.cs
     }
     //check if mouse selects one of the inventory. If selects, call SelectInventory()
     private bool CheckSelect()
@@ -90,7 +110,11 @@ public class InventoryManager : MonoBehaviour
         if (mousePos.x < topLeft.x || mousePos.y > topLeft.y)
             return false;
         topLeft = (Vector2)gridLayoutGroup.transform.position;
+<<<<<<< Updated upstream:ScreamJam/Assets/Script/InventoryManager.cs
         gridIndex = mousePos - topLeft;
+=======
+        gridIndex=mousePos - topLeft;
+>>>>>>> Stashed changes:ScreamJam/Assets/Scripts/InventoryManager.cs
         if (gridIndex.y > gridLayoutRectTransform.sizeDelta.y) return false;
         gridIndex.x -= gridLayoutGroup.padding.left;
         int index = (int)(gridIndex.x / (gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x));

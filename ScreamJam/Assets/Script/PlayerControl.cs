@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-
+        DontDestroyOnLoad(gameObject);
     }
 
 

@@ -21,6 +21,7 @@ public class SceneSwitch : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(mask.transform.parent.gameObject);
     }
     private void Start()
     {
@@ -45,11 +46,11 @@ public class SceneSwitch : MonoBehaviour
             mask.color = color;
             yield return wait;
         }
-        yield return new WaitForSeconds(0.1f);
         while (o.progress < 0.9f)
             yield return wait;
         o.allowSceneActivation = true;
         transform.SetSiblingIndex(0);
+        yield return new WaitForSeconds(0.3f);
         for (int i = interval-1; i >-1; i--)
         {
             t = (float)i / interval;
