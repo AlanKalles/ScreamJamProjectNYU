@@ -30,6 +30,7 @@ public abstract class Interactable : MonoBehaviour
 {
     public GameObject player;
     public Transform selfPos { get; set; }
+    public bool quitable = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -50,6 +51,8 @@ public abstract class Interactable : MonoBehaviour
     public Vector2 returnPos() { return selfPos.position; }
 
     public abstract void Action();
+
+    public virtual void quit() { }
 }
 
 
@@ -59,7 +62,7 @@ public abstract class Talkable : Interactable
 
     public override void Action()
     {
-        interactionManager.iManager.inInteraction = true;
+        
         iController.triggerDialogue();
     }
 }

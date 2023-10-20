@@ -25,6 +25,20 @@ public class interactionManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && ! inInteraction)
             {
                 potentialInteractions[0].Action();
+                inInteraction = true;
+            }
+            if (inInteraction)
+            {
+                
+                if (potentialInteractions[0].quitable)
+                {
+                    
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        potentialInteractions[0].quit();
+                        inInteraction = false;
+                    }
+                }
             }
         }
     }
