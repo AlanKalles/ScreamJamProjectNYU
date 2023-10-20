@@ -223,6 +223,13 @@ public class spriteModifier
         rightModification = (GameObject gm) => { gm.SetActive(_rm); };
     }
 
+    public spriteModifier(int _p, Color _lm, Color _rm)
+    {
+        pointer = _p;
+        leftModification = (GameObject gm) => { gm.GetComponent<Image>().color = Color.gray; };
+        rightModification = (GameObject gm) => { gm.GetComponent<Image>().color = Color.gray; };
+    }
+
 
     //参考中功能为变亮变暗，所以现在为瞬间modify
     public void modifySpr()
