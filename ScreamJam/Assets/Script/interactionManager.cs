@@ -13,6 +13,11 @@ public class interactionManager : MonoBehaviour
 
     private void Awake()
     {
+        if(iManager != null)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
         iManager = this;
     }
 
@@ -22,24 +27,40 @@ public class interactionManager : MonoBehaviour
         if (potentialInteractions.Count != 0)
         {
             disPlayInteraction(potentialInteractions[0]);
-            if (Input.GetKeyDown(KeyCode.E) && ! inInteraction)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                potentialInteractions[0].Action();
-                inInteraction = true;
-            }
-            if (inInteraction)
-            {
-                
-                if (potentialInteractions[0].quitable)
+                if (inInteraction)
                 {
-                    
-                    if (Input.GetMouseButtonDown(1))
+                    if (potentialInteractions[0].quitable)
                     {
                         potentialInteractions[0].quit();
-                        inInteraction = false;
                     }
+                    inInteraction = false;
+                }
+                else
+                {
+                    inInteraction = true;
+                    potentialInteractions[0].Action();
                 }
             }
+            //if (Input.GetKeyDown(KeyCode.E) && ! inInteraction)
+            //{
+            //    potentialInteractions[0].Action();
+            //    inInteraction = true;
+            //}
+            //if (inInteraction)
+            //{
+                
+            //    if (potentialInteractions[0].quitable)
+            //    {
+                    
+            //        if (Input.GetMouseButtonDown(1))
+            //        {
+            //            potentialInteractions[0].quit();
+            //            inInteraction = false;
+            //        }
+            //    }
+            //}
         }
     }
 
@@ -65,6 +86,9 @@ public class interactionManager : MonoBehaviour
 
     public void disconnect(Interactable pI)
     {
+        if (pI.quitable)
+            pI.quit();
+        inInteraction = false;
         potentialInteractions.Remove(pI);
         sortInteractions(player.transform.position);
     }

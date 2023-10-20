@@ -10,10 +10,10 @@ using TMPro;
 
 public class dialogueManager : MonoBehaviour
 {
-    public GameObject leftObject;
-    public GameObject rightObject;
-    public static GameObject leftImage = null;
-    public static GameObject rightImage = null;
+    public Image leftObject;
+    public Image rightObject;
+    public static Image leftImage;
+    public static Image rightImage;
     public static dialogueManager dManager;
 
     
@@ -31,7 +31,16 @@ public class dialogueManager : MonoBehaviour
     {
         leftImage = leftObject;
         rightImage = rightObject;
+        if(dManager != null)
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(dialogueText.transform.parent.gameObject);
         dManager = this;
+        dialogueText.gameObject.SetActive(false);
+        leftImage.gameObject.SetActive(false);
+        rightImage.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -72,6 +81,11 @@ public class dialogueManager : MonoBehaviour
         curIndex = 0;
         dialogueText.enabled = true;
 
+        leftImage.sprite = curDialogue.sprLeft;
+        rightImage.sprite = curDialogue.sprRight;
+        dialogueText.gameObject.SetActive(true);
+        leftImage.gameObject.SetActive(true); 
+        rightImage.gameObject.SetActive(true);
         sentences.Clear();
         foreach (string sentence in _d.text)
         {
@@ -109,8 +123,8 @@ public class dialogueManager : MonoBehaviour
 
     private void EndSentence()
     {
-        leftImage.SetActive(false);
-        rightImage.SetActive(false);
+        leftImage.gameObject.SetActive(false);
+        rightImage.gameObject.SetActive(false);
         curDialogue = null;
         dialogueText.enabled = false;
         interactionManager.iManager.inInteraction = false;
@@ -206,8 +220,8 @@ public class spriteModifier
     //参考中功能为变亮变暗，所以现在为瞬间modify
     public void modifySpr()
     {
-        if (leftModification != null) { leftModification(dialogueManager.leftImage); }
-        if (rightModification != null) { rightModification(dialogueManager.rightImage); }
+        if (leftModification != null) { leftModification(dialogueManager.leftImage.gameObject); }
+        if (rightModification != null) { rightModification(dialogueManager.rightImage.gameObject); }
 
     }
 }
