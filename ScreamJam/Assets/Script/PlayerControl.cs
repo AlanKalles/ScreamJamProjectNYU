@@ -15,6 +15,12 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private bool movable = true;
     [SerializeField] private State state = State.walk;
 
+    public static PlayerControl instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public enum State //���״̬
     {
