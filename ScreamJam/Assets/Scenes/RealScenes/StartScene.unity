@@ -647,7 +647,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: bcf104f10a911554890fc603b1dcacc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813827303639579213, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000044813914
+      value: 0.000042308446
       objectReference: {fileID: 0}
     - target: {fileID: 3780597604090913983, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchorMax.x

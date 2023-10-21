@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/RealScenes/D1ParentsRoom.unity
     guid: c891925d4243482499a3abe28896cc72
   - enabled: 1
+    path: Assets/Scenes/RealScenes/D2ChildDayTime.unity
+    guid: 61e44c2060db29c43aba076793af79e3
+  - enabled: 1
+    path: Assets/Scenes/RealScenes/D2DiningRoom.unity
+    guid: 3f8f5a09622ca7547ab41534a2314131
+  - enabled: 1
     path: Assets/Scenes/RealScenes/D2ChildNightTime 2.unity
     guid: 7722cbfdf8af35c4896399b694ae25be
   - enabled: 1
