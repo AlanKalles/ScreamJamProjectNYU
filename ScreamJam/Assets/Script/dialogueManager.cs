@@ -77,7 +77,6 @@ public class dialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue _d)
     {
         //没有加角色禁用的部分，同理没有加解锁部分
-        PlayerControl.instance.SetState(PlayerControl.State.interact);
         curDialogue = _d;
         curIndex = 0;
         dialogueText.enabled = true;
@@ -129,7 +128,6 @@ public class dialogueManager : MonoBehaviour
         curDialogue = null;
         dialogueText.enabled = false;
         interactionManager.iManager.inInteraction = false;
-        PlayerControl.instance.SetState(PlayerControl.State.walk);
     }
 
     IEnumerator TypeSentence(string sentence, Dialogue d, int index)
@@ -186,8 +184,6 @@ public class Dialogue
         modQue = _mQ;
     }
 
-    public Dialogue() { }
-
     public void checkDialogue(int counter)
     {
         if (modQue!= null && modQue.Count > 0)
@@ -200,7 +196,6 @@ public class Dialogue
     }
 
     public void SetModQue(Queue<spriteModifier> qsm) { modQue = qsm; }
-    public void SetText(string[] textAdd) { text = textAdd; }
 }
 
 
@@ -226,13 +221,6 @@ public class spriteModifier
         pointer = _p;
         leftModification = (GameObject gm) => { gm.SetActive(_lm); };
         rightModification = (GameObject gm) => { gm.SetActive(_rm); };
-    }
-
-    public spriteModifier(int _p, Color _lm, Color _rm)
-    {
-        pointer = _p;
-        leftModification = (GameObject gm) => { gm.GetComponent<Image>().color = Color.gray; };
-        rightModification = (GameObject gm) => { gm.GetComponent<Image>().color = Color.gray; };
     }
 
 
