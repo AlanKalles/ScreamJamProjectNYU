@@ -30,6 +30,8 @@ public abstract class Interactable : MonoBehaviour
 {
     public Transform selfPos { get; set; }
     public bool quitable = false;
+    public bool changeStage;
+    public float n;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -62,5 +64,6 @@ public abstract class Talkable : Interactable
     public override void Action()
     {
         iController.triggerDialogue();
+        if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n); }
     }
 }
