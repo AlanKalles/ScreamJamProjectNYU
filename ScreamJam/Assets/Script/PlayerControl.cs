@@ -15,13 +15,24 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private bool movable = true;
     [SerializeField] private PlayerState state = PlayerState.walk;
 
+    public static PlayerControl instance;
 
-    public enum PlayerState //���״̬
+    public enum State
     {
         walk,
         run,
-        interact
+        interact,
+        wait
     }
+
+
+    private void Awake()
+    {
+
+        instance = this;
+    }
+
+
 
     void Start()
     {
@@ -46,18 +57,18 @@ public class PlayerControl : MonoBehaviour
 
     private void StateMachine()
     {
-        if (state == PlayerState.walk)
+        if (state == State.walk)
         {
             movable = true;
             Move(walkSpeed);
         }
 
-        if(state == PlayerState.interact)
+        if(state == State.interact || state == State.wait)
         {
             movable = false;
         }
 
-        if(state == PlayerState.run)
+        if(state == State.run)
         {
             movable = true;
             Move(runSpeed);
@@ -68,16 +79,21 @@ public class PlayerControl : MonoBehaviour
     {
         if(str == "walk")
         {
-            state = PlayerState.walk;
+            state = State.walk;
         }
         if(str == "run")
         {
-            state = PlayerState.run;
+            state = State.run;
         }
         if(str == "interact")
         {
-            state = PlayerState.interact;
+            state = State.interact;
         }
+    }
+
+    public void SetState(State toState)
+    {
+        state = toState;
     }
 
 
