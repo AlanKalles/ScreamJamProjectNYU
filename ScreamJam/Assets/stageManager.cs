@@ -43,6 +43,11 @@ public class stageManager : MonoBehaviour
                 dialogueManager.dManager.StartDialogue(d);
                 break;
 
+
+            case GameStage.waitStage:
+                PlayerControl.instance.SetState(PlayerControl.State.wait);
+                break;
+
             default:
                 break;
         }
@@ -61,6 +66,10 @@ public class stageManager : MonoBehaviour
     {
         switch (oldStage)
         {
+            case GameStage.waitStage:
+                PlayerControl.instance.SetState(PlayerControl.State.walk);
+                break;
+
             default:
                 break;
         }

@@ -27,7 +27,8 @@ public class PlayerControl : MonoBehaviour
     {
         walk,
         run,
-        interact
+        interact,
+        wait
     }
 
     void Start()
@@ -63,7 +64,7 @@ public class PlayerControl : MonoBehaviour
             movable = true;
         }
 
-        if(state == State.interact)
+        if(state == State.interact || state == State.wait)
         {
             movable = false;
         }
