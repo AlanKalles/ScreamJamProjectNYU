@@ -30,7 +30,6 @@ public class interactionManager : MonoBehaviour
             disPlayInteraction(potentialInteractions[0]);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (stageManager.curStage == GameStage.waitStage) return;
                 if (inInteraction)
                 {
                     if (potentialInteractions[0].quitable)
