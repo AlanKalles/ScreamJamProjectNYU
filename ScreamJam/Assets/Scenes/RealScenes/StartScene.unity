@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813827303639579213, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000043031956
+      value: -0.0000022654617
       objectReference: {fileID: 0}
     - target: {fileID: 3780597604090913983, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -943,6 +943,7 @@ GameObject:
   - component: {fileID: 944009120}
   - component: {fileID: 944009122}
   - component: {fileID: 944009123}
+  - component: {fileID: 944009124}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1011,6 +1012,18 @@ MonoBehaviour:
     text: []
     sprLeft: {fileID: 21300000, guid: a6577f0bf357644848d503e77d7b1d3b, type: 3}
     sprRight: {fileID: 21300000, guid: 3e5cdc14d7c56274d8e387b1a7d23b41, type: 3}
+--- !u!114 &944009124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944009119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75effbeaf4e3848cca43d1bed91a3dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1356787347
 GameObject:
   m_ObjectHideFlags: 0
