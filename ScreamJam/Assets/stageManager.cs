@@ -1,37 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class stageManager : MonoBehaviour
 {
-    private GameStage curStage = GameStage.Day1Wakeup;
+    private GameStage curStage = GameStage.BeginScene;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (curStage)
+        {
+            case GameStage.BeginScene:
+                if (SceneManager.GetActiveScene().name == "D1ChildDayTime")
+                {
+                    StartAndWait(GameStage.Day1Wakeup, 2);
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 
     public void StartStage(GameStage newStage)
     {
-        if (newStage != GameStage.Day1Wakeup) { EndStage(curStage); }
+        EndStage(curStage);
 
         switch (newStage)
         {
             case GameStage.Day1Wakeup:
-
+                Dialogue d = new Dialogue();
+                d.SetText(new string[] { "Rumi: Oh, What a good life!" });
+                dialogueManager.dManager.StartDialogue(d);
                 break;
+
             default:
                 break;
         }
 
         curStage = newStage;
+    }
+
+
+    public void StartAndWait(GameStage newStage, float f)
+    {
+        StartStage(GameStage.waitStage);
+        StartCoroutine(waitSeconds(f, newStage));
     }
 
     private void EndStage(GameStage oldStage)
@@ -42,10 +65,17 @@ public class stageManager : MonoBehaviour
                 break;
         }
     }
+
+    IEnumerator waitSeconds(float n, GameStage toStage)
+    {
+        yield return new WaitForSeconds(n);
+        StartStage(toStage);
+    }   
 }
 
 public enum GameStage
 {
+    BeginScene,
     Day1Wakeup,
     Day1KitchenTalk,
     Day1ExploreHouse,
@@ -68,5 +98,6 @@ public enum GameStage
     Day3MidNight,
     Day3DadMonCome,
     Day3Chase,
-    Ending
+    Ending,
+    waitStage
 }
