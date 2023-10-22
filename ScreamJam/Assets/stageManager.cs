@@ -7,6 +7,12 @@ using System;
 public class stageManager : MonoBehaviour
 {
     public static GameStage curStage = GameStage.BeginScene;
+    public static stageManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +81,8 @@ public class stageManager : MonoBehaviour
         }
     }
 
+
+
     IEnumerator waitSeconds(float n, GameStage toStage)
     {
         yield return new WaitForSeconds(n);
@@ -86,7 +94,6 @@ public enum GameStage
 {
     BeginScene,
     Day1Wakeup,
-    Day1KitchenTalk,
     Day1ExploreHouse,
     Day1Dinner,
     Day1NightGhost,
