@@ -6,7 +6,7 @@ using System;
 
 public class stageManager : MonoBehaviour
 {
-    private GameStage curStage = GameStage.BeginScene;
+    public static GameStage curStage = GameStage.BeginScene;
 
     // Start is called before the first frame update
     void Start()
