@@ -907,6 +907,8 @@ MonoBehaviour:
   quitable: 0
   changeStage: 1
   n: 0
+  checkStage: 1
+  tarStage: 2
   d:
     text:
     - "Don\u2019t you like the piano, Rumi?"

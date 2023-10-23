@@ -24,9 +24,5 @@ public class talkableBox : Talkable
         iController = new DialogueInteraction(d);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

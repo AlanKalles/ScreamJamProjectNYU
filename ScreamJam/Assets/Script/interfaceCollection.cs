@@ -60,11 +60,20 @@ public abstract class Interactable : MonoBehaviour
 public abstract class Talkable : Interactable
 {
     public DialogueInteraction iController { get; set; }
+    public bool checkStage = false;
+    public GameStage tarStage;
 
     public override void Action()
     {
+        if (checkStage && stageManager.curStage != tarStage) { return; }
         iController.triggerDialogue();
         dialogueManager.dManager.dEvent.endDialogue += () => { if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n);} };
         
+    }
+
+    internal override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (checkStage && stageManager.curStage != tarStage) { return; }
+        base.OnTriggerEnter2D(collision);
     }
 }
