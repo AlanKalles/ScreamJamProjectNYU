@@ -301,6 +301,9 @@ GameObject:
   m_Component:
   - component: {fileID: 547461079}
   - component: {fileID: 547461080}
+  - component: {fileID: 547461081}
+  - component: {fileID: 547461083}
+  - component: {fileID: 547461082}
   m_Layer: 0
   m_Name: dining_table
   m_TagString: Untagged
@@ -375,6 +378,109 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &547461081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547461078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125bf8ee63db145c2b31687a72fda314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitable: 0
+  changeStage: 1
+  n: 0
+  d:
+    text:
+    - "It\u2019s your favorite, roast chicken tonight."
+    - Mom, why is the front door locked?
+    - A pause.
+    - Why do you ask?
+    - I wanted to go out and play.
+    - "But there\u2019s plenty to do inside."
+    - 'I wanted to see the sun.
+
+'
+    - "Well, I\u2019m sure you can see it just fine from your window."
+    - Maybe next week, when your dad has time, we can do somthing together.
+    sprLeft: {fileID: 0}
+    sprRight: {fileID: 0}
+  tarStage: 3
+--- !u!61 &547461082
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547461078}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3.6943407, y: -1.3591723}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 37.260002, y: 6.4040627}
+    newSize: {x: 37.260002, y: 6.4040627}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10.195951, y: 3.6857176}
+  m_EdgeRadius: 0
+--- !u!50 &547461083
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547461078}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &748364083
 GameObject:
   m_ObjectHideFlags: 0
