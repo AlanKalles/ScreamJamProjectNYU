@@ -27,6 +27,8 @@ public class dialogueManager : MonoBehaviour
     private bool inCoroutine = true;//the bool to stop coroutine
     private bool running = false;//the bool to detect if coroutine is running
 
+    public dialogueEvent dEvent = new dialogueEvent();
+
     private void Awake()
     {
         leftImage = leftObject;
@@ -130,6 +132,7 @@ public class dialogueManager : MonoBehaviour
         dialogueText.enabled = false;
         interactionManager.iManager.inInteraction = false;
         PlayerControl.instance.SetState(PlayerControl.State.walk);
+        dEvent.triggerEvent();
     }
 
     IEnumerator TypeSentence(string sentence, Dialogue d, int index)
@@ -245,5 +248,16 @@ public class spriteModifier
     }
 }
 
+public class dialogueEvent
+{
+    public event Action endDialogue;
+
+    public void triggerEvent()
+    {
+        if (endDialogue == null) return;
+        endDialogue();
+        endDialogue = null;
+    }
+}
 
 

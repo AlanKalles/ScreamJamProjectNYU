@@ -64,6 +64,7 @@ public abstract class Talkable : Interactable
     public override void Action()
     {
         iController.triggerDialogue();
-        if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n); }
+        dialogueManager.dManager.dEvent.endDialogue += () => { if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n);} };
+        
     }
 }
