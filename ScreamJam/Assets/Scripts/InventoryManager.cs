@@ -13,6 +13,8 @@ public class InventoryManager : MonoBehaviour
     private List<InventoryPair> inventories;
     private RectTransform gridLayoutRectTransform, viewPortTransform;
     private InventoryPair selectedInventory;
+
+    private bool isInventoryVisible = false;
     private void Awake()
     {
         instance = this;
@@ -52,6 +54,22 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+    //以下两个代码控制inventory的显示和隐藏
+    public void ToggleInventoryDisplay()
+    {
+        isInventoryVisible = !isInventoryVisible; 
+        UpdateInventoryDisplay(); 
+    }
+
+    private void UpdateInventoryDisplay()
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(isInventoryVisible);
+        }
+    }
+
     //public void AddInventory(Transform ui, Transform obj, bool isViewable)
     //{
     //    if (inventories.Count < 5)

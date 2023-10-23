@@ -729,7 +729,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &838437442
@@ -875,7 +875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813827303639579213, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00004511777
+      value: -0.0009939816
       objectReference: {fileID: 0}
     - target: {fileID: 3780597604090913983, guid: 985ea4e605e5e5a41a250a5cec348c6c, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1157,7 +1157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inInteraction: 0
   player: {fileID: 114799244}
-  eToInteractUI: {fileID: 822486677}
 --- !u!114 &944009123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,6 +1188,7 @@ GameObject:
   - component: {fileID: 1356787350}
   - component: {fileID: 1356787349}
   - component: {fileID: 1356787348}
+  - component: {fileID: 1356787352}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1279,6 +1279,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1356787352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356787347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 442dbc0a08ed9a641b72b16e21c1dde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396738735
 GameObject:
   m_ObjectHideFlags: 0

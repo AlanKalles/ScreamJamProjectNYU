@@ -73,6 +73,11 @@ public class interactionManager : MonoBehaviour
         }
     }
 
+    public bool IsInInteraction()
+    {
+        return inInteraction;
+    }
+
     //这个只需要把最近的放到最前面就行
     private void sortInteractions(Vector2 centerPos)
     {

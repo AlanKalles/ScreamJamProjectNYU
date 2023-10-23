@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -45,6 +46,18 @@ public class PlayerControl : MonoBehaviour
         {
             Move(currentSpeed);
         }
+
+        if (Input.GetKeyDown(KeyCode.I) && !interactionManager.iManager.IsInInteraction())
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name != "StartScene") 
+            {
+                // 如果不是开始场景或其他不允许使用道具列表的场景，则切换道具列表的显示
+                InventoryManager.instance.ToggleInventoryDisplay();
+            }
+            
+        }
+
     }
 
     private void Move(float speed)
