@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private State state = State.walk;
 
     public static PlayerControl instance;
+    
     private float currentSpeed;
 
     private void Awake()
@@ -41,6 +42,11 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "StartScene")
+        {
+            return;
+        }
         StateMachine();
         if (movable)
         {
@@ -49,12 +55,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I) && !interactionManager.iManager.IsInInteraction())
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            if (currentScene.name != "StartScene") 
-            {
-                // 如果不是开始场景或其他不允许使用道具列表的场景，则切换道具列表的显示
-                InventoryManager.instance.ToggleInventoryDisplay();
-            }
+            InventoryManager.instance.ToggleInventoryDisplay();
             
         }
 
@@ -68,9 +69,9 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = move;
 
         //camera movement
-        Vector3 camPos = Camera.main.transform.position;
-        camPos.x = transform.position.x;
-        Camera.main.transform.position = camPos;
+        //Vector3 camPos = Camera.main.transform.position;
+        //camPos.x = transform.position.x;
+        //Camera.main.transform.position = camPos;
     }
 
     private void StateMachine()
