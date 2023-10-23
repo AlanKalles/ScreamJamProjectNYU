@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitable: 0
-  changeStage: 0
+  changeStage: 1
   n: 0
   sceneNumber: 5
   tarStage: 6

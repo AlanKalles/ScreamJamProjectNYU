@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 80096505}
   - component: {fileID: 80096504}
-  - component: {fileID: 80096503}
+  - component: {fileID: 80096506}
   m_Layer: 0
   m_Name: DoorToParentsRoom
   m_TagString: Untagged
@@ -141,22 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &80096503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80096502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e5d1f40ae4771408dd153340ce54f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quitable: 0
-  changeStage: 0
-  n: 0
-  sceneNumber: 9
 --- !u!61 &80096504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189,7 +173,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.010738075, y: -0.6545961}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -200,7 +184,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.891121, y: 4.518638}
   m_EdgeRadius: 0
 --- !u!4 &80096505
 Transform:
@@ -217,6 +201,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1376643942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &80096506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80096502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fee034b95f834bb38c0926755fffe31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitable: 0
+  changeStage: 0
+  n: 0
+  sceneNumber: 7
+  tarStage: 9
 --- !u!1 &237919899
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +586,7 @@ MonoBehaviour:
   changeStage: 1
   n: 0
   checkStage: 1
-  tarStage: 13
+  tarStage: 7
   d:
     text:
     - Rumi.
@@ -760,6 +761,7 @@ GameObject:
   - component: {fileID: 1760688516}
   - component: {fileID: 1760688515}
   - component: {fileID: 1760688518}
+  - component: {fileID: 1760688519}
   m_Layer: 0
   m_Name: "FriendDialogue(\u7535\u8BDD)"
   m_TagString: Untagged
@@ -825,10 +827,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitable: 0
-  changeStage: 0
+  changeStage: 1
   n: 0
-  checkStage: 0
-  tarStage: 0
+  checkStage: 1
+  tarStage: 8
   d:
     text:
     - "Hi Rumi, it\u2019s me, Josie!"
@@ -915,6 +917,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1760688519
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760688514}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

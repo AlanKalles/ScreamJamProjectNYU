@@ -35,6 +35,7 @@ public class stageManager : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log(curStage);
     }
 
     public void StartStage(GameStage newStage)
