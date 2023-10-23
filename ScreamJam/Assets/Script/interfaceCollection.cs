@@ -33,7 +33,7 @@ public abstract class Interactable : MonoBehaviour
     public bool changeStage;
     public float n;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
