@@ -363,7 +363,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 45b1340a737589e438367652495540bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -421,8 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6529c454d268d4c4c82cfd8185492bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitable: 0
-  lockUI: {fileID: 55697685}
 --- !u!61 &831132621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -606,6 +604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitable: 0
+  changeStage: 0
+  n: 0
   sceneNumber: 4
 --- !u!61 &1653213574
 BoxCollider2D:
@@ -846,6 +846,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quitable: 0
+  changeStage: 0
+  n: 0
   d:
     text:
     - "Rumi, breakfast\u2019s ready."

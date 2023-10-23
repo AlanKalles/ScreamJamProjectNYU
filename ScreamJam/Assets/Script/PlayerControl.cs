@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private State state = State.walk;
 
     public static PlayerControl instance;
+    private float currentSpeed;
 
     private void Awake()
     {
@@ -23,7 +24,7 @@ public class PlayerControl : MonoBehaviour
         instance = this;
     }
 
-    public enum State //���״̬
+    public enum State 
     {
         walk,
         run,
@@ -40,15 +41,13 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         StateMachine();
-        
         if (movable)
         {
-            Move();
+            Move(currentSpeed);
         }
-        
     }
 
-    private void Move()
+    private void Move(float speed)
     {
         float moveX = Input.GetAxisRaw("Horizontal");
 
@@ -66,11 +65,18 @@ public class PlayerControl : MonoBehaviour
         if (state == State.walk)
         {
             movable = true;
+            currentSpeed = walkSpeed;
         }
 
         if(state == State.interact || state == State.wait)
         {
             movable = false;
+        }
+
+        if (state == State.run)
+        {
+            movable = true;
+            currentSpeed = runSpeed;
         }
     }
 
@@ -79,5 +85,18 @@ public class PlayerControl : MonoBehaviour
         state = toState;
     }
 
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
 
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        Vector3 position;
+        position.x = data.playerPosition[0];
+        position.y = data.playerPosition[1];
+        position.z = data.playerPosition[2];
+        transform.position = position;
+    }
 }
