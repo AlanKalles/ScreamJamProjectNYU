@@ -111,5 +111,7 @@ public class PlayerControl : MonoBehaviour
         position.y = data.playerPosition[1];
         position.z = data.playerPosition[2];
         transform.position = position;
+
+        SceneManager.LoadScene(data.sceneName);
     }
 }
