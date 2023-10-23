@@ -42,6 +42,10 @@ public class PlayerControl : MonoBehaviour
         Vector2 move = new Vector2(moveX * speed, rb.velocity.y);
         rb.velocity = move;
 
+        //camera movement
+        Vector3 camPos = Camera.main.transform.position;
+        camPos.x = transform.position.x;
+        Camera.main.transform.position = camPos;
     }
 
     private void StateMachine()
