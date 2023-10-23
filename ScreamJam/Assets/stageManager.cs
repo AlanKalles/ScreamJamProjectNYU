@@ -49,6 +49,17 @@ public class stageManager : MonoBehaviour
                 dialogueManager.dManager.StartDialogue(d);
                 break;
 
+            case GameStage.Day1NightGhostHappen:
+                StartCoroutine(waitSecondsWithAction(2, () =>
+                {
+                    //play sound
+                    //start time record
+
+                    //现在就默认玩家通过了，计时以后过关
+                    StartStage(GameStage.Day1NightAfterGhoset);
+                    Debug.Log("automatic pass");
+                }));
+                break;
 
             case GameStage.waitStage:
                 PlayerControl.instance.SetState(PlayerControl.State.wait);
@@ -87,7 +98,13 @@ public class stageManager : MonoBehaviour
     {
         yield return new WaitForSeconds(n);
         StartStage(toStage);
-    }   
+    }
+
+    IEnumerator waitSecondsWithAction(float n, Action a)
+    {
+        yield return new WaitForSeconds(n);
+        a();
+    }
 }
 
 public enum GameStage
@@ -97,6 +114,7 @@ public enum GameStage
     Day1ExploreHouse,
     Day1Dinner,
     Day1NightGhost,
+    Day1NightGhostHappen,
     Day1NightAfterGhoset,
     Day2Morning,
     Day2PhoneTalk,
