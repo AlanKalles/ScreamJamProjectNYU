@@ -20,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealScenes/D1ParentsRoom.unity
     guid: c891925d4243482499a3abe28896cc72
-  - enabled: 0
-    path: Assets/Scenes/RealScenes/D2ChildDayTime.unity
-    guid: 61e44c2060db29c43aba076793af79e3
   - enabled: 1
     path: Assets/Scenes/RealScenes/D2DiningRoom.unity
     guid: d0c7542a4f5a8aa42ba50d4669018b32
@@ -35,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RealScenes/D3ParentsRoom.unity
     guid: 60ad2ad89b2fc7444867dd7db3dedd1b
+  - enabled: 1
+    path: Assets/Scenes/RealScenes/D2ChildDayTime.unity
+    guid: a36880b6806114ba09e8892c2b191c44
   m_configObjects: {}
