@@ -6,6 +6,8 @@ public abstract class Clickable : MonoBehaviour
 {
     public Vector2 topRight, botLeft;
     public Vector3 hoverPosOffset;
+    public bool checkStage;
+    public GameStage targetStage;
 
     private static Vector2 mouseWorldPos;
     Vector3 originalPos, hoverPos;
@@ -23,6 +25,7 @@ public abstract class Clickable : MonoBehaviour
     internal virtual void FixedUpdate()
     {
         if (!clickable) return;
+        if (checkStage && stageManager.curStage != targetStage) return;
         if (mouseWorldPos == Vector2.zero)
         {
             mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -40,7 +43,8 @@ public abstract class Clickable : MonoBehaviour
     internal virtual void Update()
     {
         if(!clickable) return;
-        if(Input.GetMouseButtonDown(0))
+        if (checkStage && stageManager.curStage != targetStage) return;
+        if (Input.GetMouseButtonDown(0))
         {
             if (mouseWorldPos == Vector2.zero)
                 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
