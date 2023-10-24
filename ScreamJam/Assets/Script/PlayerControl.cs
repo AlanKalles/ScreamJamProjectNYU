@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private State state = State.walk;
 
     public static PlayerControl instance;
+    private Animator animator;
     
     private float currentSpeed;
 
@@ -37,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        animator = GetComponent<Animator>();
     }
 
 
@@ -67,7 +69,24 @@ public class PlayerControl : MonoBehaviour
 
         Vector2 move = new Vector2(moveX * walkSpeed, rb.velocity.y);
         rb.velocity = move;
+        if(moveX != 0)
+        {
+            animator.SetBool("inMoving",true);
+            if (moveX > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
 
+        }
+        else
+        {
+            animator.SetBool("inMoving", false);
+        }
+        
         //camera movement
         //Vector3 camPos = Camera.main.transform.position;
         //camPos.x = transform.position.x;
