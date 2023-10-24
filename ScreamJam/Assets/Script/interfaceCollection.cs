@@ -33,6 +33,8 @@ public abstract class Interactable : MonoBehaviour
     public bool changeStage;
     public float n;
 
+    private bool stageChanged = false;
+
     internal virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -51,7 +53,10 @@ public abstract class Interactable : MonoBehaviour
 
     public Vector2 returnPos() { return selfPos.position; }
 
-    public abstract void Action();
+    public virtual void Action()
+    {
+        if (changeStage&&!stageChanged) { stageChanged = true; stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n); }
+    }
 
     public virtual void quit() { }
 }
@@ -67,8 +72,8 @@ public abstract class Talkable : Interactable
     {
         if (checkStage && stageManager.curStage != tarStage) { return; }
         iController.triggerDialogue();
-        dialogueManager.dManager.dEvent.endDialogue += () => { if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n);} };
-        
+        //dialogueManager.dManager.dEvent.endDialogue += () => { if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n);} };
+        base.Action();
     }
 
     internal override void OnTriggerEnter2D(Collider2D collision)
