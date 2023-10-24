@@ -55,6 +55,7 @@ public class stageManager : MonoBehaviour
                 Dialogue d = new Dialogue();
                 d.SetText(new string[] { "Rumi: Oh, What a good life!" });
                 dialogueManager.dManager.StartDialogue(d);
+                interactionManager.iManager.inInteraction = true;
                 break;
 
             case GameStage.Day1NightGhostHappen:
