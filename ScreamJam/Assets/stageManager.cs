@@ -9,6 +9,7 @@ public class stageManager : MonoBehaviour
     public static GameStage curStage = GameStage.BeginScene;
     public static stageManager instance;
 
+    private int[] stageCount;
     private void Awake()
     {
         instance = this;
@@ -17,7 +18,12 @@ public class stageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        stageCount = new int[25];//这个数组的个数==GameStage枚举的个数
+        for(int i = 0; i < 25; i++)
+        {
+            stageCount[i] = 1;
+        }
+        stageCount[(int)GameStage.Day1Dinner] = 2;
     }
 
     // Update is called once per frame
@@ -35,11 +41,12 @@ public class stageManager : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log(curStage);
+        //Debug.Log(curStage);
     }
 
-    public void StartStage(GameStage newStage)
+    void StartStage(GameStage newStage)
     {
+        Debug.Log(newStage);
         EndStage(curStage);
 
         switch (newStage)
@@ -76,7 +83,12 @@ public class stageManager : MonoBehaviour
 
     public void StartAndWait(GameStage newStage, float f)
     {
+        stageCount[(int)newStage] -= 1;
+        if (stageCount[(int)newStage] > 0)
+            return;
         StartStage(GameStage.waitStage);
+        if (f <= 0)
+            StartStage(newStage);
         StartCoroutine(waitSeconds(f, newStage));
     }
 
