@@ -173,7 +173,8 @@ MonoBehaviour:
   changeStage: 0
   n: 0
   sceneNumber: 2
-  tarStage: 3
+  tarStage: 2
+  toStage: 3
 --- !u!61 &172846515
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -594,6 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1194368246}
   - component: {fileID: 1194368247}
+  - component: {fileID: 1194368248}
   m_Layer: 0
   m_Name: "\u7B26\u5492"
   m_TagString: Untagged
@@ -668,6 +670,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1194368248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194368245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8323785ec0444b540ae3a69036e89290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topRight: {x: 5.14, y: -2.45}
+  botLeft: {x: 2.4, y: -3.76}
+  hoverPosOffset: {x: 0, y: 0.25, z: 0}
+  checkStage: 0
+  targetStage: 0
+  type: 2
+  changeStage: 1
 --- !u!1 &1202425350
 GameObject:
   m_ObjectHideFlags: 0

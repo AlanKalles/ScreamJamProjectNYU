@@ -1244,6 +1244,8 @@ MonoBehaviour:
   quitable: 0
   changeStage: 0
   n: 0
+  checkStage: 0
+  tarStage: 0
   d:
     text:
     - 'Rumi: I can''t open it!'
