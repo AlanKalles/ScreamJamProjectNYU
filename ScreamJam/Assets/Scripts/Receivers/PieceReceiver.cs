@@ -30,7 +30,7 @@ public abstract class PieceReceiver : MonoBehaviour
     }
     public bool CheckBounds(Vector2 mouseWorldPos)
     {
-        return mouseWorldPos.x > botLeft.x && mouseWorldPos.x < topRight.x && mouseWorldPos.y > botLeft.y && mouseWorldPos.y < topRight.y;
+        return mouseWorldPos.x > botLeft.x && mouseWorldPos.x < topRight.x && mouseWorldPos.y < botLeft.y && mouseWorldPos.y > topRight.y;
     }
     public abstract void Action(GameObject go);
     internal virtual bool CompareType(CollectableObject.ObjectType type)

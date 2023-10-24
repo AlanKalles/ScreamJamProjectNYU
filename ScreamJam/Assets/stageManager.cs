@@ -9,8 +9,17 @@ public class stageManager : MonoBehaviour
     public static GameStage curStage = GameStage.BeginScene;
     public static stageManager instance;
     public TriggerSL triggerSL;
+    public challengeResult CurChallengeResult = challengeResult.wait;
+    public float TimeLimit = 30f; // 时限为30秒
 
     private int[] stageCount;
+
+    public enum challengeResult
+    {
+        success,
+        fail,
+        wait
+    }
     private void Awake()
     {
         instance = this;
@@ -61,15 +70,9 @@ public class stageManager : MonoBehaviour
                 break;
 
             case GameStage.Day1NightGhostHappen:
-                StartCoroutine(waitSecondsWithAction(2, () =>
-                {
-                    //play sound
-                    //start time record
-
-                    //现在就默认玩家通过了，计时以后过关
-                    StartStage(GameStage.Day1NightAfterGhoset);
-                    Debug.Log("automatic pass");
-                }));
+                StartCoroutine(StartChallenge());
+                
+                
                 break;
 
             case GameStage.waitStage:
@@ -83,6 +86,19 @@ public class stageManager : MonoBehaviour
         curStage = newStage;
     }
 
+    private IEnumerator StartChallenge()
+    {
+        yield return new WaitForSeconds(TimeLimit);
+
+        if (CurChallengeResult == challengeResult.fail)
+        {
+
+        }
+        else if (CurChallengeResult == challengeResult.success)
+        {
+            curStage = GameStage.Day1NightAfterGhoset;
+        }
+    }
 
     public void StartAndWait(GameStage newStage, float f)
     {

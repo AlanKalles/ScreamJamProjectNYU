@@ -126,14 +126,18 @@ public class InventoryManager : MonoBehaviour
     private void CheckReceiver()
     {
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Debug.Log(mouseWorldPos);
         if (PieceReceiver.receivers.Count > 0)
         {
+            Debug.Log("stage1");
             for (int i = 0; i < PieceReceiver.receivers.Count; i++)
             {
                 if (PieceReceiver.receivers[i].CheckBounds(mouseWorldPos))
                 {
+                    Debug.Log("stage2");
                     if (PieceReceiver.receivers[i].CheckGameObject(selectedInventory.obj.gameObject))
                     {
+                        Debug.Log("stage3");
                         PieceReceiver.receivers[i].Action(selectedInventory.obj.gameObject);
                         RemoveSelectedObject();
                     }
