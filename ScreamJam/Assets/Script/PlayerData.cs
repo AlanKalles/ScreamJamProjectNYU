@@ -10,6 +10,7 @@ public class PlayerData
     public int progress;
     public float[] playerPosition;
     public string sceneName;
+    public int sceneExperienced;
 
 
     public PlayerData(PlayerControl player)

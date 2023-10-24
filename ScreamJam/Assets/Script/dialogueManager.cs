@@ -18,6 +18,7 @@ public class dialogueManager : MonoBehaviour
 
     
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI tipText;
     public Dialogue d = new Dialogue();
 
     private Queue<string> sentences = new Queue<string>();
@@ -41,6 +42,7 @@ public class dialogueManager : MonoBehaviour
         DontDestroyOnLoad(dialogueText.transform.parent.gameObject);
         dManager = this;
         dialogueText.gameObject.SetActive(false);
+        tipText.gameObject.SetActive(false);
         leftImage.gameObject.SetActive(false);
         rightImage.gameObject.SetActive(false);
     }
@@ -83,10 +85,12 @@ public class dialogueManager : MonoBehaviour
         curDialogue = _d;
         curIndex = 0;
         dialogueText.enabled = true;
+        tipText.enabled = true;
 
         leftImage.sprite = curDialogue.sprLeft;
         rightImage.sprite = curDialogue.sprRight;
         dialogueText.gameObject.SetActive(true);
+        tipText.gameObject.SetActive(true);
         leftImage.gameObject.SetActive(true); 
         rightImage.gameObject.SetActive(true);
         sentences.Clear();
@@ -130,6 +134,7 @@ public class dialogueManager : MonoBehaviour
         rightImage.gameObject.SetActive(false);
         curDialogue = null;
         dialogueText.enabled = false;
+        tipText.enabled = false;
         interactionManager.iManager.inInteraction = false;
         PlayerControl.instance.SetState(PlayerControl.State.walk);
         dEvent.triggerEvent();
@@ -139,6 +144,7 @@ public class dialogueManager : MonoBehaviour
     {
         d.checkDialogue(index);
         dialogueText.text = "";
+
 
         foreach (char letter in sentence.ToCharArray())
         {

@@ -8,6 +8,7 @@ public class stageManager : MonoBehaviour
 {
     public static GameStage curStage = GameStage.BeginScene;
     public static stageManager instance;
+    public TriggerSL triggerSL;
 
     private int[] stageCount;
     private void Awake()
@@ -52,6 +53,7 @@ public class stageManager : MonoBehaviour
         switch (newStage)
         {
             case GameStage.Day1Wakeup:
+                triggerSL.Save();
                 Dialogue d = new Dialogue();
                 d.SetText(new string[] { "Rumi: Oh, What a good life!" });
                 dialogueManager.dManager.StartDialogue(d);
