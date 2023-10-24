@@ -96,7 +96,7 @@ public class InventoryManager : MonoBehaviour
         go.transform.position = go.transform.parent.position;
         obj.gameObject.SetActive(false);
         obj.SetParent(null);
-        
+        DontDestroyOnLoad(obj);
     }
     //check if mouse selects one of the inventory. If selects, call SelectInventory()
     private bool CheckSelect()
@@ -126,14 +126,17 @@ public class InventoryManager : MonoBehaviour
     private void CheckReceiver()
     {
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        for (int i = 0; i < PieceReceiver.receivers.Count; i++)
+        if (PieceReceiver.receivers.Count > 0)
         {
-            if (PieceReceiver.receivers[i].CheckBounds(mouseWorldPos))
+            for (int i = 0; i < PieceReceiver.receivers.Count; i++)
             {
-                if (PieceReceiver.receivers[i].CheckGameObject(selectedInventory.obj.gameObject))
+                if (PieceReceiver.receivers[i].CheckBounds(mouseWorldPos))
                 {
-                    PieceReceiver.receivers[i].Action(selectedInventory.obj.gameObject);
-                    RemoveSelectedObject();
+                    if (PieceReceiver.receivers[i].CheckGameObject(selectedInventory.obj.gameObject))
+                    {
+                        PieceReceiver.receivers[i].Action(selectedInventory.obj.gameObject);
+                        RemoveSelectedObject();
+                    }
                 }
             }
         }
