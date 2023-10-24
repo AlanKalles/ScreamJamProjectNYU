@@ -9,9 +9,8 @@ public class doorToParents : Interactable
     public int sceneNumber;
     public override void Action()
     {
-        
+        base.Action();
         SceneSwitch.SwitchToScene(sceneNumber);
-        if (changeStage) { stageManager.instance.StartAndWait((GameStage)((int)stageManager.curStage + 1), n); }
     }
 
     internal override void OnTriggerEnter2D(Collider2D collision)
